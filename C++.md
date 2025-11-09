@@ -1204,8 +1204,32 @@ c++没有强制规定虚函数的实现方式。**编译器中主要用虚表指
   //  这块内存存放着虚函数地址,这块内存就是我们所说的虚表.
   //64位下把int换成longlong就好了
   ```
+- **虚函数如何找到具体某个函数**
+```c
+  #include <iostream>
 
-  
+// 基类
+class Base {
+public:
+    virtual void f() { std::cout << "Base::f()" << std::endl; }
+    virtual void g() { std::cout << "Base::g()" << std::endl; }
+};
+
+// 派生类（覆盖 f()，新增 h()）
+class Derived : public Base {
+public:
+    void f() override { std::cout << "Derived::f()" << std::endl; } // 覆盖基类 f()
+    virtual void h() { std::cout << "Derived::h()" << std::endl; }   // 新增虚函数
+};
+```
+根据声明顺序，虚函数在 vtable 中的索引如下：
+Base 类的 vtable 索引：
+Base::f() → 索引 0
+Base::g() → 索引 1
+Derived 类的 vtable 索引（继承基类虚函数，覆盖后索引不变，新增函数接在后面）：
+Derived::f()（覆盖 Base::f ()）→ 索引 0
+Base::g()（未被覆盖，继承）→ 索引 1
+Derived::h()（新增）→ 索引 2
 
 ## C语言怎么实现多态
 
