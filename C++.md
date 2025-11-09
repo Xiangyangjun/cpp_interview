@@ -149,7 +149,7 @@ struct str{
     int b[0];
 }
 
-//sizeof = 4
+//sizeof = 0
 struct str{
     int b[0];
 }
