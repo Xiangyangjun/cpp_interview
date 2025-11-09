@@ -1223,12 +1223,19 @@ public:
 };
 ```
 根据声明顺序，虚函数在 vtable 中的索引如下：
+
 Base 类的 vtable 索引：
+
 Base::f() → 索引 0
+
 Base::g() → 索引 1
+
 Derived 类的 vtable 索引（继承基类虚函数，覆盖后索引不变，新增函数接在后面）：
+
 Derived::f()（覆盖 Base::f ()）→ 索引 0
+
 Base::g()（未被覆盖，继承）→ 索引 1
+
 Derived::h()（新增）→ 索引 2
 
 ## C语言怎么实现多态
