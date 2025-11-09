@@ -198,7 +198,7 @@ arr 本身是左值（但不可仅凭此表达式修改），指代数组对象�
 
 
 
-## char a,char a[],char *a,char *[],char * *a 之间的区别
+## char a,char a[],char *a,char *a[],char * *a 之间的区别
 
 1. char a
 
